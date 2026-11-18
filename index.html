@@ -83,21 +83,14 @@
       .logo img { height: 46px; width: auto; display: block; }
       /* Logo TRÊN MENU: dùng trực tiếp file logo bản trắng toàn bộ (footer giữ bản màu gốc) */
 
-      nav.main { display: flex; align-items: center; gap: 4px; margin: 0 auto; }
+      /* Nav nằm sát BÊN PHẢI header (logo ở trái); header trong suốt, không filter/backdrop-filter */
+      nav.main { display: flex; align-items: center; gap: 4px; margin: 0 0 0 auto; }
       nav.main a {
         display: inline-flex; align-items: center; min-height: 42px;
         padding: 8px 14px;
         color: #fff; text-decoration: none; font-size: 16px; font-weight: 500; white-space: nowrap;
       }
       nav.main a:hover { color: var(--accent); }
-      .btn-filter {
-        display: inline-flex; align-items: center; gap: 10px; min-height: 44px;
-        padding: 8px 4px; border: 0; background: transparent; cursor: pointer;
-        color: #fff; font: inherit; font-size: 16px; font-weight: 500; white-space: nowrap; margin-left: auto;
-      }
-      nav.main + .btn-filter { margin-left: 0; }
-      .btn-filter svg { width: 24px; height: 24px; }
-      .btn-filter:hover { color: var(--accent); }
 
       /* Nội dung hero: TẤT CẢ CĂN GIỮA như Vroomo */
       .hero-center {
@@ -571,7 +564,7 @@
       /* ---------- Mobile ≤768px: giao diện kiểu app — search lên đầu, tab cố định dưới ---------- */
       @media (max-width: 768px) {
         /* Header gọn: chỉ còn logo trắng (menu đã có ở thanh tab dưới) */
-        nav.main, .btn-filter { display: none; }
+        nav.main { display: none; }
         .nav-row { min-height: 60px; }
         .logo img { height: 40px; }
 
@@ -657,11 +650,6 @@
             <a href="#tim-chuyen">Tìm xe</a>
             <a href="#" class="js-login">Đăng nhập</a>
           </nav>
-
-          <button class="btn-filter" type="button" id="filterBtn">
-            Filter
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-          </button>
         </div>
       </div>
 
@@ -1114,11 +1102,6 @@
             e.preventDefault();
             showToast("Tính năng đăng nhập sẽ có trong bản tiếp theo.");
           });
-        });
-
-        // Nút Filter kiểu Vroomo: cuộn tới panel tìm chuyến trong hero
-        document.getElementById("filterBtn").addEventListener("click", function () {
-          document.getElementById("tim-chuyen").scrollIntoView({ behavior: "smooth", block: "center" });
         });
 
         // Thanh tab dưới kiểu app (chỉ hiện trên mobile): bấm tab nào thì tab đó active
